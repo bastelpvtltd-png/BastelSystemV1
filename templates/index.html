@@ -20,6 +20,22 @@
         </div>
     </div>
 
+    <div id="pwPopup" class="popup-overlay" style="display: none; background: rgba(0,0,0,0.95); z-index: 10000;">
+        <div class="popup-box" style="border: 2px solid #FF9900; background: #001226; width: 400px;">
+            <h2 style="color: #FF9900; letter-spacing: 2px;">SECURITY UPDATE</h2>
+            <p style="margin: 15px 0; font-size: 14px; opacity: 0.8; line-height: 1.5;">As a first-time user, please set a personal password to secure your account.</p>
+            
+            <div class="input-group">
+                <input type="password" id="newPW" placeholder="Enter New Password" style="width:100%; padding:12px; margin-bottom:10px; background:#111; border:1px solid #444; color:#fff; border-radius:8px;">
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPW" placeholder="Confirm New Password" style="width:100%; padding:12px; margin-bottom:20px; background:#111; border:1px solid #444; color:#fff; border-radius:8px;">
+            </div>
+            
+            <button onclick="saveNewPassword()" class="login-btn">Update & Login</button>
+        </div>
+    </div>
+
     <div id="login-page">
         <div class="video-container">
             <video autoplay muted loop playsinline>
@@ -88,9 +104,9 @@
                         <div id="new-user" class="sub-tab-content">
                             <h2 style="color: #FF9900; margin-bottom: 20px;">CREATE SYSTEM ACCESS</h2>
                             <div style="max-width: 350px;">
-                                <div class="input-group"><input type="text" id="regUser" placeholder="New Username"></div>
-                                <div class="input-group"><input type="password" id="regPass" placeholder="New Password"></div>
-                                <div class="input-group"><input type="text" id="regName" placeholder="Staff Full Name"></div>
+                                <div class="input-group" style="margin-bottom:10px;"><input type="text" id="regUser" placeholder="New Username"></div>
+                                <div class="input-group" style="margin-bottom:10px;"><input type="password" id="regPass" placeholder="Temporary Password"></div>
+                                <div class="input-group" style="margin-bottom:15px;"><input type="text" id="regName" placeholder="Staff Full Name"></div>
                                 <button onclick="createNewAccount()" class="login-btn">Register User</button>
                             </div>
                         </div>
