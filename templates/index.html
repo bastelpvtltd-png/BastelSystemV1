@@ -10,10 +10,13 @@
 <body data-ip="{{ ip }}">
 
     <div id="ipBlocker" class="popup-overlay" style="display: none; background: #000; z-index: 9999;">
-        <div class="popup-box" style="border-color: #ff4444;">
-            <h2 style="color: #ff4444;">ACCESS RESTRICTED</h2>
-            <p style="margin: 20px 0;">Your IP: <strong id="displayIP"></strong> is not authorized.</p>
-            <p style="font-size: 12px; opacity: 0.6;">Contact Admin to white-list your device.</p>
+        <div class="popup-box" style="border-color: #ff4444; background: #000c1a;">
+            <h2 style="color: #ff4444; letter-spacing: 2px;">ACCESS RESTRICTED</h2>
+            <div style="margin: 20px 0; padding: 15px; background: rgba(255,0,0,0.1); border-radius: 8px;">
+                <p style="font-size: 14px;">Your IP Address:</p>
+                <strong id="displayIP" style="color: #fff; font-size: 20px;"></strong>
+            </div>
+            <p style="font-size: 13px; opacity: 0.7;">This system is protected. Contact Admin to authorize this device.</p>
         </div>
     </div>
 
@@ -27,58 +30,76 @@
             <div class="login-box">
                 <h1 class="brand-name">BASTEL</h1>
                 <p class="sub-brand">Pvt Ltd | Logistics</p>
-                <div class="input-group"><input type="text" id="userField" placeholder="Username"></div>
-                <div class="input-group"><input type="password" id="passField" placeholder="Password"></div>
-                <div class="options">
-                    <input type="checkbox" id="agree">
-                    <label for="agree">I agree to secure access terms</label>
+                
+                <div class="input-group">
+                    <input type="text" id="userField" placeholder="Username" required>
                 </div>
+                <div class="input-group">
+                    <input type="password" id="passField" placeholder="Password" required>
+                </div>
+
+                <div class="options">
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree" style="font-size: 12px; cursor: pointer;">I agree to secure access terms</label>
+                </div>
+
                 <button onclick="handleLogin()" class="login-btn">Secure Login</button>
-                <p id="errorMsg" style="color: #ff4444; margin-top: 15px; font-weight: bold;"></p>
+
+                <div class="footer-note">
+                    System Access Restricted to Authorized IPs Only
+                    <br>
+                    <span class="security-badge">● Encrypted Connection</span>
+                </div>
+                <p id="errorMsg" style="color: #ff4444; margin-top: 15px; font-weight: bold; font-size: 13px;"></p>
             </div>
         </div>
     </div>
 
-    <div id="dashboard" style="display:none;">
+    <div id="dashboard" style="display: none;">
         <div class="top-nav">
             <h2 style="color: #FF9900; letter-spacing: 3px;">BASTEL</h2>
             <div class="nav-tabs" id="dynamicTabs"></div>
-            <button onclick="location.reload()" style="margin-left:auto; background:transparent; border:1px solid #ff4444; color:#ff4444; padding:7px 15px; border-radius:5px; cursor:pointer;">Logout</button>
+            <button onclick="location.reload()" style="margin-left:auto; background:transparent; border:1px solid #ff4444; color:#ff4444; padding:7px 15px; border-radius:5px; cursor:pointer; font-weight: bold;">Logout</button>
         </div>
 
         <div class="content-area">
             <div id="HOME" class="tab-content">
-                <h1>WELCOME, <span id="userSpan"></span></h1>
-                <p style="margin-top:20px; opacity:0.7;">Designation: <span id="roleSpan"></span></p>
+                <div style="background: rgba(255,153,0,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,153,0,0.2);">
+                    <h1>WELCOME, <span id="userSpan" style="color: #FF9900;"></span></h1>
+                    <p style="margin-top:10px; opacity:0.7;">Role: <span id="roleSpan"></span></p>
+                </div>
             </div>
 
             <div id="OPEN_ACCOUNT" class="tab-content">
                 <div class="vertical-container">
                     <div class="v-side-menu">
-                        <div class="v-tab active" onclick="showSubTab('ip-verify')">IP VERIFY</div>
-                        <div class="v-tab" onclick="showSubTab('new-user')">NEW USER</div>
+                        <div class="v-tab active" onclick="showSubTab('ip-verify')">IP VERIFICATION</div>
+                        <div class="v-tab" onclick="showSubTab('new-user')">REGISTER USER</div>
                     </div>
                     <div class="v-content">
                         <div id="ip-verify" class="sub-tab-content active">
-                            <h2>IP AUTHORIZATION</h2>
-                            <p>Current User IP: <span id="currentIpSpan" style="color:#FF9900;"></span></p>
-                            <button onclick="requestIPAccess()" class="login-btn" style="width:200px; margin-top:20px;">Approve This IP</button>
+                            <h2 style="color: #FF9900; margin-bottom: 20px;">DEVICE AUTHORIZATION</h2>
+                            <p style="margin-bottom: 10px; opacity: 0.8;">Current Session IP:</p>
+                            <h3 id="currentIpSpan" style="background: #000; display: inline-block; padding: 10px 20px; border-radius: 8px; color: #00ff00; letter-spacing: 1px;"></h3>
+                            <div style="margin-top: 30px;">
+                                <button onclick="requestIPAccess()" class="login-btn" style="width: auto; padding: 12px 30px;">Whitelist This Device</button>
+                            </div>
                         </div>
                         <div id="new-user" class="sub-tab-content">
-                            <h2>REGISTER NEW USER</h2>
-                            <div class="input-group" style="margin-top:20px;">
-                                <input type="text" id="regUser" placeholder="Username" style="margin-bottom:10px;">
-                                <input type="password" id="regPass" placeholder="Password" style="margin-bottom:10px;">
-                                <input type="text" id="regName" placeholder="Full Name" style="margin-bottom:10px;">
-                                <button onclick="createNewAccount()" class="login-btn">Create Account</button>
+                            <h2 style="color: #FF9900; margin-bottom: 20px;">CREATE SYSTEM ACCESS</h2>
+                            <div style="max-width: 350px;">
+                                <div class="input-group"><input type="text" id="regUser" placeholder="New Username"></div>
+                                <div class="input-group"><input type="password" id="regPass" placeholder="New Password"></div>
+                                <div class="input-group"><input type="text" id="regName" placeholder="Staff Full Name"></div>
+                                <button onclick="createNewAccount()" class="login-btn">Register User</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="ACCESS" class="tab-content"><h1>Access Control</h1></div>
-            <div id="CONTACT" class="tab-content"><h1>Contact Support</h1></div>
+            <div id="ACCESS" class="tab-content"><h1>Access Control List</h1></div>
+            <div id="CONTACT" class="tab-content"><h1>Technical Support</h1></div>
         </div>
     </div>
 
