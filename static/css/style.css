@@ -1,0 +1,45 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body, html { height: 100%; overflow: hidden; background-color: #001226; color: white; }
+
+/* LOGIN STYLING */
+.video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+.video-container video { min-width: 100%; min-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); filter: brightness(35%) contrast(110%); }
+
+.login-wrapper { display: flex; justify-content: center; align-items: center; height: 100vh; }
+.login-box { 
+    background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15); padding: 50px 40px; border-radius: 20px; width: 420px; text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.brand-name { font-size: 50px; font-weight: 900; color: #FF9900; letter-spacing: 8px; margin-bottom: 0; }
+.sub-brand { font-size: 12px; color: #ffffff; letter-spacing: 4px; margin-bottom: 40px; opacity: 0.8; text-transform: uppercase; }
+
+.input-group { margin-bottom: 20px; }
+.input-group input { 
+    width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 10px; color: #fff; font-size: 16px; outline: none; 
+}
+
+.login-btn { 
+    width: 100%; padding: 15px; border: none; border-radius: 10px;
+    background: linear-gradient(45deg, #FF9900, #FFCC00); color: #001f3f;
+    font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase;
+}
+
+.footer-note { margin-top: 30px; font-size: 11px; color: #888; text-transform: uppercase; }
+.security-badge { display: inline-block; margin-top: 10px; padding: 4px 10px; background: rgba(0, 255, 0, 0.1); color: #00ff00; border-radius: 4px; font-size: 10px; }
+
+/* DASHBOARD STYLING */
+#dashboard { display: none; height: 100vh; flex-direction: column; background: #001226; }
+.top-nav { background: rgba(0,0,0,0.5); display: flex; align-items: center; padding: 0 30px; border-bottom: 2px solid #FF9900; height: 70px; }
+.nav-tabs { display: flex; gap: 5px; margin-left: 40px; }
+.nav-tab { padding: 12px 20px; cursor: pointer; font-weight: bold; color: #aaa; text-transform: uppercase; font-size: 13px; }
+.nav-tab.active { color: #FF9900; border-bottom: 3px solid #FF9900; }
+
+.content-area { flex: 1; padding: 40px; overflow-y: auto; }
+.tab-content { display: none; }
+.active-content { display: block; }
+
+.popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+.popup-box { background: #001f3f; padding: 40px; border: 2px solid #FF9900; border-radius: 20px; width: 400px; text-align: center; }

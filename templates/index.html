@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASTEL PVT LTD | Secure Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div id="pwPopup" class="popup-overlay">
+        <div class="popup-box">
+            <h2 style="color: #FF9900;">SECURITY UPDATE</h2>
+            <p style="margin: 15px 0; font-size: 14px; opacity: 0.8;">Set a new password for your account.</p>
+            <input type="password" id="newPW" placeholder="New Password" style="width:100%; padding:12px; margin-bottom:10px; background:#111; border:1px solid #444; color:#fff;">
+            <input type="password" id="confirmPW" placeholder="Confirm Password" style="width:100%; padding:12px; margin-bottom:10px; background:#111; border:1px solid #444; color:#fff;">
+            <button onclick="saveNewPassword()" class="login-btn">Update & Continue</button>
+        </div>
+    </div>
+
+    <div id="login-page">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-ship-in-the-middle-of-the-ocean-41006-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="login-wrapper">
+            <div class="login-box">
+                <h1 class="brand-name">BASTEL</h1>
+                <p class="sub-brand">Pvt Ltd | Logistics</p>
+                
+                <div class="input-group"><input type="text" id="userField" placeholder="Username" required></div>
+                <div class="input-group"><input type="password" id="passField" placeholder="Password" required></div>
+
+                <div class="options">
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree">I agree to secure access terms</label>
+                </div>
+
+                <button onclick="handleLogin()" class="login-btn">Secure Login</button>
+
+                <div class="footer-note">
+                    System Access Restricted to Authorized IPs Only
+                    <br>
+                    <span class="security-badge">● Encrypted Connection</span>
+                </div>
+                <p id="errorMsg" style="color: #ff4444; margin-top: 15px; font-weight: bold;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard">
+        <div class="top-nav">
+            <h2 style="color: #FF9900; letter-spacing: 3px;">BASTEL</h2>
+            <div class="nav-tabs" id="dynamicTabs"></div>
+            <button onclick="location.reload()" style="margin-left:auto; background:transparent; border:1px solid #ff4444; color:#ff4444; padding:7px 15px; border-radius:5px; cursor:pointer;">Logout</button>
+        </div>
+
+        <div class="content-area">
+            <div id="HOME" class="tab-content">
+                <h1>WELCOME, <span id="userSpan"></span></h1>
+                <p style="margin-top:20px; opacity:0.7;">Designation: <span id="roleSpan"></span></p>
+            </div>
+            <div id="OPEN_ACCOUNT" class="tab-content"><h1>Create New User</h1></div>
+            <div id="ACCESS" class="tab-content"><h1>Access Control</h1></div>
+            <div id="CONTACT" class="tab-content"><h1>Contact Support</h1></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>
