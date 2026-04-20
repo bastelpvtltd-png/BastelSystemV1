@@ -4,11 +4,23 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let sessionUser = "";
 const userIP = document.body.dataset.ip;
+const ALLOWED_ADMIN_IP = "212.104.231.90"; // ඔයා දුන්න IP එක
 
 async function checkSecurity() {
+    // UI එකේ IP එක පෙන්වන්න
     document.getElementById('displayIP').innerText = userIP;
-    if(document.getElementById('currentIpSpan')) document.getElementById('currentIpSpan').innerText = userIP;
+    if(document.getElementById('currentIpSpan')) {
+        document.getElementById('currentIpSpan').innerText = userIP;
+    }
 
+    // මුලින්ම බලනවා ඔයා දුන්න විශේෂ IP එකද කියලා
+    if (userIP === ALLOWED_ADMIN_IP) {
+        console.log("Admin IP Detected. Access Granted.");
+        document.getElementById('ipBlocker').style.display = 'none';
+        return; // IP එක මැච් නම් මෙතනින් එහාට චෙක් කරන්නේ නැහැ
+    }
+
+    // එහෙම නැත්නම් Supabase එකේ approved ලිස්ට් එකේ තියෙනවද බලනවා
     const { data, error } = await supabaseClient
         .from('allowed_ips')
         .select('*')
@@ -17,11 +29,15 @@ async function checkSecurity() {
 
     if (!data || data.length === 0) {
         document.getElementById('ipBlocker').style.display = 'flex';
+    } else {
+        document.getElementById('ipBlocker').style.display = 'none';
     }
 }
 
+// System එක පූරණය වෙද්දීම ආරක්ෂාව පරීක්ෂා කරන්න
 checkSecurity();
 
+// LOGIN HANDLE
 async function handleLogin() {
     let u = document.getElementById('userField').value.toLowerCase();
     let p = document.getElementById('passField').value;
